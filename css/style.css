@@ -1,0 +1,315 @@
+/*
+ * css/style.css
+ * Desain Responsif, Modern, dan Bersih untuk PKBM Celah Cahaya
+ */
+
+/* --- Variabel & Reset Dasar --- */
+:root {
+    --primary-color: #007bff;      /* Biru terang untuk aksi utama/branding */
+    --secondary-color: #6c757d;    /* Abu-abu untuk teks sekunder */
+    --background-color: #f4f7f9;   /* Latar belakang bersih */
+    --card-bg: #ffffff;            /* Latar belakang kartu */
+    --font-stack: 'Poppins', sans-serif;
+    --shadow-light: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--background-color);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- Layout Dashboard (Menu Samping/Sidebar) --- */
+#sidebar {
+    width: 250px;
+    background-color: var(--card-bg);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    height: 100vh;
+    position: fixed;
+    transition: width 0.3s, transform 0.3s;
+    overflow-y: auto;
+    padding-top: 20px;
+}
+
+.nav-logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin: 0 auto 40px;
+}
+
+#sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    transition: background-color 0.2s, border-left-color 0.2s;
+}
+
+#sidebar a:hover, #sidebar a.active {
+    background-color: #e9ecef;
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+#content {
+    margin-left: 250px;
+    padding: 30px;
+    transition: margin-left 0.3s;
+}
+
+/* Header Konten */
+header {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+header h2 {
+    color: #212529;
+    font-weight: 700;
+}
+
+/* --- Kartu (Card) Modern --- */
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* --- Halaman Login/Daftar (index.html, daftar.html) --- */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.auth-card {
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.logo-auth {
+    width: 120px;
+    margin-bottom: 25px;
+}
+
+/* --- Form Elements --- */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* --- Tombol Aksi --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.switch-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.switch-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- Kelas & Ebook Tampilan Kartu --- */
+.class-selection-grid, .ebook-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.class-card, .ebook-item {
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s;
+    background-color: var(--card-bg);
+}
+
+.class-card:hover, .ebook-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-light);
+    transform: scale(1.03);
+}
+
+.class-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+/* Meet List */
+.meet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #28a745; /* Garis hijau untuk meet */
+    background: #e9f7ec;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.btn-join {
+    background-color: #28a745; 
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* Laporan (Tabel) */
+.laporan-box {
+    overflow-x: auto; /* Untuk responsif tabel */
+}
+
+#absenTable, #tugasTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#absenTable th, #tugasTable th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+#absenTable td, #tugasTable td {
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+
+/* --- Responsif Mobile (Di bawah 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Dashboard: Ubah Sidebar menjadi Menu Atas/Header Responsif */
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        overflow-x: auto;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    #content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .nav-logo, .nav-footer { /* Sembunyikan Logo besar di mobile */
+        display: none !important;
+    }
+
+    #sidebar a {
+        padding: 10px 10px;
+        font-size: 0.85em;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    
+    #sidebar a:hover, #sidebar a.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--primary-color);
+    }
+    
+    /* 2. Halaman Auth */
+    .auth-page {
+        padding: 20px;
+    }
+
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    /* 3. Grid Konten */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 4. Meet Item */
+    .meet-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-join {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
