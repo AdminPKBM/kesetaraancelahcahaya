@@ -1,0 +1,3 @@
+// ... (Gunakan kode dari respon sebelumnya, pastikan URL GAS sudah di-set)
+const GOOGLE_SHEET_API_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+// ...
