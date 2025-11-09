@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='id'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>E-Book | PKBM Celah Cahaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+    <script src='js/googleSheets.js'></script>
+    <script>checkAuth();</script>
+    
+    <nav id="sidebar">...</nav> <main id="content">
+        <header>
+            <h2 id="ebook-title">Daftar E-Book</h2>
+            <p>Silakan pilih materi yang ingin Anda pelajari.</p>
+        </header>
+
+        <section class="ebook-list" id="ebook-container">
+            <p>Memuat daftar E-book...</p>
+        </section>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const kelas = urlParams.get('kelas') || 'paketC'; // Default Paket C
+
+            document.getElementById('ebook-title').textContent = `E-Book ${kelas.toUpperCase()}`;
+            
+            // --- Data E-book Simulasi (Ganti dengan getData('Ebook')) ---
+            const ebooks = [
+                { judul: "Informatika", file: "info_c.pdf" },
+                { judul: "Bahasa Indonesia", file: "indo_c.pdf" },
+                { judul: "Matematika", file: "mtk_c.pdf" }
+            ];
+
+            const container = document.getElementById('ebook-container');
+            container.innerHTML = ''; // Hapus pesan loading
+            
+            ebooks.forEach(ebook => {
+                const link = document.createElement('a');
+                link.href = `belajar.html?file=${ebook.file}`;
+                link.className = 'card ebook-item';
+                link.innerHTML = `📚 ${ebook.judul}`;
+                container.appendChild(link);
+            });
+        });
+    </script>
+</body>
+</html>
