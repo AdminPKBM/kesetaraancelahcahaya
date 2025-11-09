@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='id'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Laporan | PKBM Celah Cahaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+    <script src='js/googleSheets.js'></script>
+    <script>checkAuth();</script>
+    <nav id="sidebar">...</nav> 
+    
+    <main id="content">
+        <header>
+            <h2>Rekap Laporan Belajar</h2>
+            <p>Lihat rekap absen dan nilai tugas Anda di sini.</p>
+        </header>
+
+        <section class='dashboard-grid' style="grid-template-columns: 1fr;">
+            <div class='card laporan-box'>
+                <h3>Absensi Bulanan</h3>
+                <table id='absenTable'>
+                    <tr><th>Tanggal</th><th>Status</th><th>Keterangan</th></tr>
+                </table>
+            </div>
+            
+            <div class='card laporan-box'>
+                <h3>Nilai Tugas</h3>
+                <table id='tugasTable'>
+                    <tr><th>Mata Pelajaran</th><th>Judul Tugas</th><th>Nilai</th></tr>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',async()=>{
+            // Ganti 'absen' dan 'tugas' dengan nama Sheet Anda
+            const abs = await getData('Absensi'); 
+            const tg = await getData('Tugas');
+            
+            // Fungsi render yang lebih baik untuk menghindari asumsi data mentah
+            function renderTable(data, tableId) {
+                const table = document.getElementById(tableId);
+                if (data.length === 0) {
+                    table.innerHTML = `<tr><td colspan="3">Tidak ada data yang tersedia.</td></tr>`;
+                    return;
+                }
+                
+                // Asumsi baris pertama adalah header
+                const headers = Object.keys(data[0]).map(h => `<th>${h}</th>`).join('');
+                let tableHTML = `<tr>${headers}</tr>`;
+
+                data.forEach(row => {
+                    const cells = Object.values(row).map(c => `<td>${c}</td>`).join('');
+                    tableHTML += `<tr>${cells}</tr>`;
+                });
+                
+                table.innerHTML = tableHTML;
+            }
+            
+            renderTable(abs, 'absenTable');
+            renderTable(tg, 'tugasTable');
+        });
+    </script>
+</body>
+</html>
