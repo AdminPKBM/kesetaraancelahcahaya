@@ -1,3 +1,3 @@
 // ... (Gunakan kode dari respon sebelumnya, pastikan URL GAS sudah di-set)
-const GOOGLE_SHEET_API_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+const GOOGLE_SHEET_API_URL = 'https://script.google.com/a/macros/admin.kesetaraan.belajar.id/s/AKfycbzOMnF8cyJ3oEq0L28PygG2PWu09CM8ioCnkD8MbTXRDOl_w9TtT_rXKC-8ytWikLOZ/exec';
 // ...
