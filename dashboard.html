@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='id'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Dashboard | PKBM Celah Cahaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+    <script src='js/googleSheets.js'></script>
+    <script>checkAuth();</script> 
+    
+    <nav id="sidebar">
+        <img src='assets/logo.png' class='nav-logo' alt='Logo'>
+        <a href='dashboard.html' class='active'>🏠 Dashboard</a>
+        <a href='kelas.html'>📚 Kelas</a>
+        <a href='ebook.html'>📖 E-Book</a>
+        <a href='laporan.html'>📊 Laporan</a>
+        <a href='meet.html'>🖥️ Google Meet</a>
+        <a href='tentang.html'>💡 Tentang</a>
+        <div class="nav-footer" style="padding: 20px; margin-top: 30px;">
+            <a href="#" onclick="clearSession()" style="color: var(--secondary-color); border-left: none;">Keluar</a>
+        </div>
+    </nav>
+    
+    <main id="content">
+        <header>
+            <h2 id="welcome-message">Selamat Datang!</h2>
+            <p>Lanjutkan pembelajaran Anda hari ini dengan semangat.</p>
+        </header>
+
+        <section class="dashboard-grid">
+            
+            <div class="card card-progress" style="grid-column: span 2;">
+                <h3>Progres Belajar Anda</h3>
+                <p id="progres-info">Memuat data progres...</p>
+                <div style="height: 12px; background-color: #eee; border-radius: 6px; margin-top: 15px;">
+                    <div id="progress-bar" style="width: 0%; height: 12px; background-color: #28a745; border-radius: 6px; transition: width 1s;"></div>
+                </div>
+                <p id="progress-percentage" style="text-align: right; font-size: 0.9em; margin-top: 5px; color: #28a745; font-weight: 600;">0% Selesai</p>
+                <a href="kelas.html" class="btn-primary" style="margin-top: 20px; width: 50%; float: right;">Lanjut Belajar</a>
+            </div>
+
+            <div class="card card-quick-access">
+                <h3>Akses Cepat</h3>
+                <a href="kelas.html" class="btn-primary" style="background-color: #17a2b8; margin-bottom: 10px;">Pilih Kelas & Modul</a>
+                <a href="meet.html" class="btn-primary" style="background-color: #ffc107;">Cek Jadwal Meet</a>
+            </div>
+            
+            <div class="card card-latest-news">
+                <h3>Pengumuman Terbaru</h3>
+                <ul id="pengumuman-list" style="list-style: none; padding-left: 0;">
+                    <li style="border-bottom: 1px solid #eee; padding: 10px 0;">Jadwal Ujian Semester telah dirilis.</li>
+                    <li style="border-bottom: 1px solid #eee; padding: 10px 0;">Batas waktu pengumpulan Tugas PKN.</li>
+                    <li style="padding: 10px 0;">PKBM Libur Nasional 17 Agustus.</li>
+                </ul>
+            </div>
+        </section>
+        
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getSession();
+            if (user && user.nama) {
+                document.getElementById('welcome-message').textContent = `Selamat Datang, ${user.nama}!`;
+            }
+            
+            // --- Simulasi Data Progres (Ganti dengan data riil dari Google Sheets) ---
+            const progressValue = 75; 
+            document.getElementById('progress-bar').style.width = `${progressValue}%`;
+            document.getElementById('progress-percentage').textContent = `${progressValue}% Selesai`;
+            document.getElementById('progres-info').textContent = `Progres saat ini: Paket C - Bahasa Indonesia.`;
+        });
+    </script>
+</body>
+</html>
