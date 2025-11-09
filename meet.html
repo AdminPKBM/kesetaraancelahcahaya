@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='id'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Google Meet | PKBM Celah Cahaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+    <script src='js/googleSheets.js'></script>
+    <script>checkAuth();</script>
+    
+    <nav id="sidebar">...</nav> <main id="content">
+        <header>
+            <h2>Jadwal Google Meet</h2>
+            <p>Klik tombol 'Masuk Sesi' pada jadwal yang aktif untuk bergabung.</p>
+        </header>
+        
+        <section class="card">
+            <ul id="meet-schedule-list" style="list-style: none; padding-left: 0;">
+                <p>Memuat jadwal...</p>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Asumsi Sheet bernama 'JadwalMeet' dengan kolom: Hari, Jam, MataPelajaran, Link
+            const jadwal = await getData('JadwalMeet'); 
+            const listElement = document.getElementById('meet-schedule-list');
+            listElement.innerHTML = ''; 
+
+            if (jadwal.length === 0) {
+                listElement.innerHTML = '<li class="card" style="border-left: none; background: #fff;">Tidak ada jadwal Google Meet yang tersedia saat ini.</li>';
+                return;
+            }
+
+            jadwal.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'meet-item';
+                li.innerHTML = `
+                    <div>
+                        <span style="font-size: 0.9em; color: #555;">📅 ${item.Hari} (${item.Jam})</span>
+                        <p style="font-weight: 600; margin-top: 5px;">${item.MataPelajaran}</p>
+                    </div>
+                    <a href='${item.Link}' target="_blank" class="btn-join">Masuk Sesi</a>
+                `;
+                listElement.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
